@@ -1,5 +1,4 @@
 # hotpaste/hotkeys.py
-import threading
 import time
 import pyperclip
 from pynput import keyboard
