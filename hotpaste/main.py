@@ -6,7 +6,7 @@ from hotkeys import set_slot_getter, start_listener
 
 class HotPasteApp(rumps.App):
     def __init__(self):
-        super().__init__("HotPaste", icon=None, title="\u2328")
+        super().__init__("HotPasteExtender", icon=None, title="\U0001F4CB")
         self.config = load_config()
         self._build_menu()
         set_slot_getter(self._get_slot_value)
@@ -20,7 +20,7 @@ class HotPasteApp(rumps.App):
             value = self.config["slots"].get(slot, "")
             display = value if value else "(empty)"
             item = rumps.MenuItem(
-                f"Ctrl+{slot}: {display}",
+                f"Ctrl+Alt+{slot}: {display}",
                 callback=self._make_edit_callback(slot),
             )
             self.menu.add(item)
@@ -30,7 +30,7 @@ class HotPasteApp(rumps.App):
         def callback(sender):
             current = self.config["slots"].get(slot, "")
             response = rumps.Window(
-                message=f"Enter value for Ctrl+{slot}:",
+                message=f"Enter value for Ctrl+Alt+{slot}:",
                 title="Edit Slot",
                 default_text=current,
                 ok="Save",
