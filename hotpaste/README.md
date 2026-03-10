@@ -1,55 +1,58 @@
-# HotPaste
+# HotPasteExtender
 
-macOS menu bar hotkey text expander. Define up to 5 text snippets and paste them instantly with **Ctrl+1** through **Ctrl+5**.
-
-Click the keyboard icon in the menu bar to view and edit your hotkey slots.
-
-## Requirements
-
-- macOS
-- Python 3
+macOS menu bar app for instant text pasting via global hotkeys. Store up to 5 text snippets and paste them into any app — including RDP/VNC remote sessions — with Ctrl+Alt+1 through Ctrl+Alt+5.
 
 ## Install
 
-```bash
-pip install -r requirements.txt
-```
-
-## Run
+### Homebrew (recommended)
 
 ```bash
-python main.py
+brew tap delirious9/hotpasteextender
+brew install hotpasteextender
 ```
 
-## Grant Accessibility Permissions
-
-HotPaste needs Accessibility access to listen for global hotkeys.
-
-1. Open **System Settings > Privacy & Security > Accessibility**
-2. Click the **+** button
-3. Add your **Terminal** app (or the Python binary you are using)
-4. Toggle it on
-
-Without this, hotkey listening will not work.
-
-## Install as LaunchAgent (start on login)
-
-1. Edit `com.hotpaste.app.plist` and replace `REPLACE_WITH_ABSOLUTE_PATH` with the actual absolute path to this project directory.
-
-2. Copy the plist to LaunchAgents:
-
-   ```bash
-   cp com.hotpaste.app.plist ~/Library/LaunchAgents/
-   ```
-
-3. Load it:
-
-   ```bash
-   launchctl load ~/Library/LaunchAgents/com.hotpaste.app.plist
-   ```
-
-## Uninstall LaunchAgent
+### Manual
 
 ```bash
-launchctl unload ~/Library/LaunchAgents/com.hotpaste.app.plist
+git clone https://github.com/delirious9/hotpasteextender.git
+cd hotpasteextender
+./setup.sh
 ```
+
+## Setup
+
+After install, grant Accessibility access:
+
+**System Preferences > Privacy & Security > Accessibility** — add the Python binary (shown during setup).
+
+## Usage
+
+- Click the 📋 icon in the menu bar to edit your 5 slots
+- Press **Ctrl+Alt+1** through **Ctrl+Alt+5** to paste the corresponding slot
+
+### How it works
+
+- **Native macOS apps**: Copies to clipboard and simulates Cmd+V
+- **RDP/VNC apps**: Types characters directly via CGEvent (clipboard is not touched to avoid sync issues)
+
+## Uninstall
+
+### Homebrew
+
+```bash
+brew uninstall hotpasteextender
+```
+
+### Manual
+
+```bash
+./uninstall.sh
+```
+
+## Customization
+
+This repo includes a `CLAUDE.md` with full architecture docs and debugging history. Open the repo in [Claude Code](https://claude.ai/claude-code) to customize hotkeys, add slots, or fix issues for your specific setup.
+
+## License
+
+MIT
