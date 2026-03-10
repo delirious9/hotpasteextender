@@ -7,8 +7,7 @@ macOS menu bar app for instant text pasting via global hotkeys. Store up to 5 te
 ### Homebrew (recommended)
 
 ```bash
-brew tap delirious9/hotpasteextender
-brew install hotpasteextender
+brew install delirious9/hotpasteextender/hotpasteextender
 ```
 
 ### Manual
